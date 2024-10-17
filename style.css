@@ -10,27 +10,25 @@ body {
 
 /* Header and Navigation */
 .header-banner {
-    background-image: url('banner.jpg'); /* Make sure the banner image is correct and available */
+    background-image: url('banner.jpg'); /* Make sure this path is correct */
     background-size: cover;
     background-position: center;
-    height: 400px; /* Increase height for a thicker banner */
+    height: 300px; /* Adjusted height to make the banner slightly thinner */
     display: flex;
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
-    text-align: center; /* Ensure all text in the banner is centered */
-}
-
+    align-items: center; /* Center the content vertically */
+    justify-content: center; /* Center the content horizontally */
+    text-align: center;
 }
 
 .header-text {
-    color: #28a745; /* Green text color for banner titles */
-    font-size: 3.5rem;
+    color: #28a745; /* Green text color for banner title */
+    font-size: 4rem; /* Increased size for a more prominent heading */
     margin: 0;
 }
 
-.banner-content p {
+.sub-text {
     font-size: 1.5rem;
-    color: #28a745; /* Changed sub-text color to green */
+    color: #28a745; /* Green color for the sub-heading text */
     margin-top: 10px;
 }
 
