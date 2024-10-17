@@ -10,12 +10,16 @@ body {
 
 /* Header and Navigation */
 .header-banner {
-    background-image: url('banner.jpg'); /* Add back the banner image */
+    background-image: url('banner.jpg'); /* Make sure the banner image is correct and available */
     background-size: cover;
     background-position: center;
-    color: white;
-    padding: 50px 20px;
-    text-align: center;
+    height: 400px; /* Increase height for a thicker banner */
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    text-align: center; /* Ensure all text in the banner is centered */
+}
+
 }
 
 .header-text {
