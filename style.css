@@ -10,10 +10,9 @@ body {
 
 /* Header and Navigation */
 .header-banner {
+    background-image: url('banner.jpg');
     background-size: cover;
-    color: white;
-    padding: 50px 20px;
-    text-align: center;
+    background-position: center;
 }
 
 .header-text {
@@ -152,3 +151,7 @@ footer p {
     margin: 0;
     font-size: 1rem;
 }
+.banner-content p {
+    color: #28a745; /* Green color */
+}
+
