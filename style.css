@@ -9,21 +9,26 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    position: relative;
+}
+
+.header-banner {
+    background-image: url('banner-image.jpg'); /* Add your banner image here */
+    background-size: cover;
+    background-position: center;
     color: white;
-    padding: 30px 0;
+    padding: 80px 20px;
     text-align: center;
 }
 
-.header-container {
-    max-width: 1200px;
-    margin: auto;
+.banner-content h1 {
+    font-size: 3.5rem;
+    margin: 0;
 }
 
-header h1 {
-    font-size: 3.5rem;
-    font-weight: bold;
-    margin: 0;
+.banner-content p {
+    font-size: 1.5rem;
+    margin-top: 10px;
 }
 
 .top-nav {
@@ -63,18 +68,22 @@ main {
     margin: auto;
 }
 
-.intro {
+.intro, .about-content {
     text-align: center;
     margin-bottom: 40px;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
-.intro h2 {
+.intro h2, .about-content h2 {
     font-size: 2.5rem;
     color: #333;
     margin-bottom: 20px;
 }
 
-.intro p {
+.intro p, .about-content p {
     font-size: 1.2rem;
     color: #555;
     max-width: 800px;
