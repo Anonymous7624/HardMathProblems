@@ -1,164 +1,76 @@
-/* General Styles */
+/* General Styles for Blooket Bot Helper */
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #e0f7fa; /* Light baby blue background for homepage */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
     line-height: 1.6;
-}
-
-/* Header and Navigation */
-.header-banner {
-    background-image: url('banner.jpg'); /* Make sure this path is correct */
-    background-size: cover;
-    background-position: center;
-    height: 300px; /* Adjusted height to make the banner slightly thinner */
-    display: flex;
-    align-items: center; /* Center the content vertically */
-    justify-content: center; /* Center the content horizontally */
-    text-align: center;
-}
-
-.header-text {
-    color: #28a745; /* Green text color for banner title */
-    font-size: 4rem; /* Increased size for a more prominent heading */
-    margin: 0;
-}
-
-.sub-text {
-    font-size: 1.5rem;
-    color: #0000FF; /* Blue color for the sub-heading text */
-    margin-top: 10px;
-}
-
-.top-nav {
-    background-color: #333;
-}
-
-.top-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 10px 0;
-    display: flex;
-    justify-content: center;
-}
-
-.top-nav ul li {
-    margin: 0 20px;
-}
-
-.top-nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-size: 1.3rem;
-    transition: background-color 0.3s ease;
-}
-
-.top-nav ul li a:hover {
-    background-color: #575757;
-    border-radius: 5px;
-}
-
-/* Main Content Styles */
-main {
-    padding: 50px 20px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.content-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 30px;
-    margin-bottom: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.content-section.reverse {
-    flex-direction: row-reverse;
-}
-
-.content-text {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.content-section.reverse .content-text {
-    margin-left: 20px;
-    margin-right: 0;
-}
-
-.content-text h2 {
-    font-size: 2.5rem;
+    background-color: #f4f4f4;
     color: #333;
-    margin-bottom: 15px;
 }
 
-.content-text p {
-    font-size: 1.2rem;
-    color: #555;
-}
-
-.content-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.home-image {
-    width: 100%;
-    height: auto;
-    max-width: 400px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.home-image:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* Enroll Button */
-.enroll-section {
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding: 1rem 0;
     text-align: center;
-    margin-top: 40px;
 }
 
-.enroll-button {
-    display: inline-block;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    color: white;
-    background-color: #28a745;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.enroll-button:hover {
-    background-color: #218838;
-}
-
-/* Footer */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    position: relative;
-    width: 100%;
-}
-
-footer p {
+header h1 {
     margin: 0;
-    font-size: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 2rem;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form select, form button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+form button {
+    background: #35424a;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #45a049;
+}
+
+footer {
+    background: #35424a;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
