@@ -1,62 +1,768 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBA Math</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>John Pork Merch</title>
+  <!-- Import Google Font with weights 400 and 500 -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      transition: background 0.5s;
+      text-align: center;
+    }
+    /* Announcement Banner */
+    .announcement-banner {
+      background: #f44336;
+      color: #fff;
+      padding: 8px;
+      font-size: 16px;
+    }
+    /* Navigation Bar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #333;
+      padding: 10px 20px;
+      color: #fff;
+    }
+    .navbar a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .navbar .nav-left,
+    .navbar .nav-right {
+      display: flex;
+      align-items: center;
+    }
+    .navbar input[type="text"] {
+      padding: 5px 8px;
+      border-radius: 3px;
+      border: none;
+      margin-left: 10px;
+    }
+    /* Breadcrumb */
+    .breadcrumb {
+      padding: 10px 20px;
+      font-size: 14px;
+      background: #eee;
+    }
+    /* Sort & Filter Bar */
+    .sort-filter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: #f9f9f9;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    .sort-filter select {
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+    .filter-links {
+      text-align: left;
+    }
+    .filter-links a {
+      margin-right: 10px;
+      color: #007bff;
+      text-decoration: none;
+    }
+    /* Featured Products Section */
+    #featured-products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      background: #f7f7f7;
+      border-bottom: 2px solid #ddd;
+      margin-bottom: 20px;
+    }
+    .featured-product {
+      background: #fff;
+      border: 2px solid #007bff;
+      border-radius: 10px;
+      padding: 4px;
+      width: 180px;  /* Slightly wider */
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .featured-product:hover {
+      transform: scale(1.05);
+    }
+    .featured-product img {
+      width: 100%;
+      max-height: 80px; /* Decreased image height */
+      object-fit: contain;
+      border-radius: 5px;
+      margin-bottom: 4px;
+    }
+    .featured-product h2 {
+      margin: 4px 0;
+      font-size: 16px;
+      color: #007bff;
+    }
+    .featured-product p.description {
+      font-size: 12px;
+      color: #555;
+      margin: 4px 0;
+    }
+    .featured-product p.price {
+      font-size: 14px;
+      font-weight: bold;
+      color: #000;
+      margin: 4px 0;
+    }
+    .featured-product p.rating {
+      font-size: 12px;
+      color: gold;
+      white-space: nowrap;
+      overflow: visible;
+      margin: 4px 0;
+    }
+    .featured-product button {
+      background: #007bff;
+      border: none;
+      color: white;
+      padding: 4px 8px;
+      margin-top: 4px;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background 0.3s;
+      font-size: 12px;
+    }
+    .featured-product button:hover {
+      background: #0056b3;
+    }
+    /* Store Container */
+    .store-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .product:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 3px;
+      transition: opacity 0.3s;
+    }
+    .product h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+    .product p.description {
+      font-size: 13px;
+      color: #666;
+      margin: 5px 0;
+    }
+    .price {
+      font-size: 16px;
+      color: #000;
+      font-weight: bold;
+    }
+    .reviews {
+      font-size: 14px;
+      color: #888;
+    }
+    .product button {
+      background: #007bff;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background 0.3s;
+    }
+    .product button:hover {
+      background: #0056b3;
+    }
+    /* Pagination */
+    .pagination {
+      text-align: center;
+      padding: 15px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+    }
+    .pagination a {
+      margin: 0 5px;
+      text-decoration: none;
+      color: #007bff;
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    /* Footer */
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+    footer .social a {
+      margin: 0 5px;
+      color: #ccc;
+      text-decoration: none;
+    }
+    footer form input[type="email"] {
+      padding: 5px;
+      border-radius: 3px;
+      border: none;
+    }
+    footer form input[type="submit"] {
+      padding: 5px 10px;
+      border-radius: 3px;
+      border: none;
+      background: #f44336;
+      color: #fff;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+    /* Live Chat Widget */
+    .chat-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 50px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      font-size: 14px;
+      z-index: 1100;
+    }
+    /* Fake Alert Styles */
+    .fake-alert {
+      position: fixed;
+      background: #ffdddd;
+      padding: 10px;
+      z-index: 1000;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 10px red;
+      margin: 10px;
+    }
+    .fake-alert button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: darkred;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+    .image-alert {
+      width: 280px;
+      max-width: 100%;
+      box-shadow: 0 0 15px red;
+    }
+    /* Hacking Overlay (Code Animation) */
+    #hackingOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: black;
+      color: lime;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 14px;
+      display: none;
+      z-index: 2000;
+      overflow-y: auto;
+      white-space: pre;
+      padding: 20px;
+      text-align: left;
+    }
+    /* BSOD Overlay */
+    #bsodOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #0000aa;
+      color: white;
+      font-family: Consolas, monospace;
+      font-size: 18px;
+      display: none;
+      z-index: 3000;
+      padding: 20px;
+    }
+    /* Glitch Effect */
+    .glitch {
+      animation: glitch-animation 0.2s infinite;
+    }
+    @keyframes glitch-animation {
+      0% { opacity: 1; }
+      20% { opacity: 0.8; transform: translate(-2px, 2px); }
+      40% { opacity: 1; transform: translate(2px, -2px); }
+      60% { opacity: 0.8; transform: translate(-2px, -2px); }
+      80% { opacity: 1; transform: translate(2px, 2px); }
+      100% { opacity: 1; transform: translate(0, 0); }
+    }
+    /* Additional Hacking Effects: Shake & Blur */
+    .hacking-effects {
+      animation: shake 0.5s infinite, blur 1s infinite;
+    }
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-5px, 5px); }
+      40% { transform: translate(5px, -5px); }
+      60% { transform: translate(-5px, -5px); }
+      80% { transform: translate(5px, 5px); }
+      100% { transform: translate(0, 0); }
+    }
+    @keyframes blur {
+      0%, 100% { filter: blur(0px); }
+      50% { filter: blur(3px); }
+    }
+    /* Loading Bar Overlay (Center-Right) */
+    #loadingBar {
+      display: none;
+      position: fixed;
+      top: 50%;
+      right: 10%;
+      transform: translateY(-50%);
+      text-align: center;
+      z-index: 2100;
+    }
+    #loadingBar img {
+      width: 150px;
+      height: auto;
+    }
+    #loadingBar #virusCounter {
+      color: red;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    /* Wheel Container for Spinning Wheel */
+    #wheelContainer {
+      display: none;
+      position: fixed;
+      top: 10%;
+      left: 10%;
+      right: 10%;
+      bottom: 10%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2500;
+      text-align: center;
+      color: #fff;
+      padding-top: 20px;
+    }
+    #wheel {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      border: 5px solid #fff;
+      border-radius: 50%;
+      position: relative;
+      transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    /* Wheel Option (for display purposes) */
+    .wheel-option {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      text-align: center;
+      transform-origin: 100% 100%;
+      font-size: 14px;
+    }
+    /* Positioning of some sample options */
+    .option1 { transform: rotate(0deg); top: 0; left: 50%; }
+    .option2 { transform: rotate(60deg); top: 0; left: 50%; }
+    .option3 { transform: rotate(120deg); top: 0; left: 50%; }
+    .option4 { transform: rotate(180deg); top: 0; left: 50%; }
+    .option5 { transform: rotate(240deg); top: 0; left: 50%; }
+    .option6 { transform: rotate(300deg); top: 0; left: 50%; } /* This will be the "bad" option */
+  </style>
 </head>
 <body>
-    <header>
-        <div class="header-banner">
-            <div class="banner-content">
-                <h1 class="header-text">Super Fun Math Lessons</h1>
-                <p>Interactive Math Learning for Kids of All Ages</p>
-            </div>
-        </div>
-    </header>
-
-    <nav class="top-nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="lessons.html">Lessons</a></li>
-            <li><a href="enroll.html">Enroll</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section id="home">
-            <div class="content-section">
-                <div class="content-text">
-                    <h2>Interactive Learning Made Fun</h2>
-                    <p>We provide engaging activities to help kids learn math in a fun and interactive way! Whether it's tackling multiplication, division, or solving puzzles, our activities are designed to make learning both challenging and rewarding.</p>
-                    <p>Our program is tailored for kids of all levels, making learning fun, personalized, and efficient. Get the best out of math with our innovative approach!</p>
-                </div>
-                <div class="content-image">
-                    <img src="KidLearning1.png" alt="Child learning math" class="home-image">
-                </div>
-            </div>
-
-            <div class="content-section reverse">
-                <div class="content-text">
-                    <h2>Activities for All Ages</h2>
-                    <p>Our goal is to help kids of all ages improve their math skills through interactive activities. Dive into a world of learning and make math mastery both exciting and achievable!</p>
-                    <p>We offer a structured curriculum designed to meet every student's needs, and our certified instructors are here to support your child every step of the way. Ready to transform your child's math experience?</p>
-                </div>
-                <div class="content-image">
-                    <img src="KidLearning2.png" alt="Kids engaged in learning" class="home-image">
-                </div>
-            </div>
-
-            <div class="enroll-section">
-                <a href="enroll.html" class="enroll-button">Enroll Now</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Super Hard Math Games &copy; 2024 | Learning Made Fun!</p>
-    </footer>
+  <!-- Announcement Banner -->
+  <div class="announcement-banner">
+    Big Sale! Free Shipping on Orders Over $50!
+  </div>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="nav-left">
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="nav-right">
+      <input type="text" placeholder="Search products...">
+      <span style="margin-left:10px;">👤</span>
+      <span style="margin-left:10px;">🛒</span>
+    </div>
+  </div>
+  <!-- Breadcrumb Navigation -->
+  <div class="breadcrumb">
+    Home > Products
+  </div>
+  <!-- Sort & Filter Bar -->
+  <div class="sort-filter" style="justify-content: space-between; text-align: left;">
+    <div class="filter-links">
+      <a href="#">All</a>
+      <a href="#">Shirts</a>
+      <a href="#">Hats</a>
+      <a href="#">Accessories</a>
+    </div>
+    <div style="text-align: right;">
+      Sort by: 
+      <select>
+        <option>Relevance</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Newest</option>
+      </select>
+    </div>
+  </div>
+  <!-- Featured Products (Main Attraction) -->
+  <div id="featured-products">
+    <div class="featured-product">
+      <img src="PorkPill.png" alt="Brain Pork Pill">
+      <h2>Brain Pork Pill</h2>
+      <p class="description">The Brain Pork Pill increases IQ by 50.</p>
+      <p class="price">$0.99</p>
+      <p class="rating">★★★★★</p>
+      <button>Buy Now</button>
+    </div>
+    <div class="featured-product">
+      <img src="DiquaviousPorkPill.png" alt="Diquavious Pork Pill">
+      <h2>Diquavious Pork Pill</h2>
+      <p class="description">The Diquavious Pork Pill turns you into a pig.</p>
+      <p class="price">$4.99</p>
+      <p class="rating">★★★★★★★★★★</p>
+      <button>Buy Now</button>
+    </div>
+  </div>
+  <!-- Store Container with Product Listings -->
+  <div class="store-container">
+    <div class="product">
+      <img src="JohnPorkShirt.jpeg" alt="John Pork Shirt">
+      <h3>John Pork Shirt</h3>
+      <p class="description">A premium quality shirt for the modern pork enthusiast.</p>
+      <p class="price">$19.99</p>
+      <p class="reviews">★★★★☆ (50 reviews)</p>
+      <button class="chaos-btn">Buy Now</button>
+    </div>
+    <div class="product">
+      <img src="JohnPorkShirt1.jpeg" alt="John Pork Shirt">
+      <h3>John Pork Shirt</h3>
+      <p class="description">Stylish and comfortable – made for pork lovers.</p>
+      <p class="price">$21.99</p>
+      <p class="reviews">★★★☆☆ (35 reviews)</p>
+      <button class="chaos-btn">Buy Now</button>
+    </div>
+    <div class="product">
+      <img src="JohnPorkShirt2.jpeg" alt="John Pork Shirt">
+      <h3>John Pork Shirt</h3>
+      <p class="description">The perfect blend of comfort and style.</p>
+      <p class="price">$17.99</p>
+      <p class="reviews">★★★★★ (75 reviews)</p>
+      <button class="chaos-btn">Buy Now</button>
+    </div>
+  </div>
+  <!-- Pagination Bar -->
+  <div class="pagination">
+    <a href="#">«</a>
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">»</a>
+  </div>
+  <!-- Footer -->
+  <footer>
+    <p>Contact us: support@johnporkmerch.com | +1 (555) 123-4567</p>
+    <div class="social">
+      <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a>
+    </div>
+    <form>
+      <label for="newsletter">Subscribe to our newsletter:</label>
+      <input type="email" id="newsletter" placeholder="Enter your email">
+      <input type="submit" value="Subscribe">
+    </form>
+    <p>&copy; 2025 John Pork Merch. All rights reserved.</p>
+  </footer>
+  <!-- Live Chat Widget -->
+  <div class="chat-widget">Chat with us</div>
+  <!-- Wheel Container (New Feature) -->
+  <div id="wheelContainer">
+    <div id="wheel">
+      <!-- You can list options on the wheel using absolutely positioned divs -->
+      <div class="wheel-option option1">Win a Prize</div>
+      <div class="wheel-option option2">Get a Discount</div>
+      <div class="wheel-option option3">Free Gift</div>
+      <div class="wheel-option option4">Malware Download</div>
+      <div class="wheel-option option5">Lucky Spin</div>
+      <div class="wheel-option option6">Bonus Offer</div>
+    </div>
+    <p id="wheelMessage" style="margin-top:20px; font-size:20px;">Spin the Wheel!</p>
+  </div>
+  <!-- Hacking Overlay (Chaos Mode) -->
+  <div id="hackingOverlay"></div>
+  <!-- BSOD Overlay (Unused) -->
+  <div id="bsodOverlay">
+    <h1>:(</h1>
+    <p>A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
+    <p>If this is the first time you've seen this stop error screen, restart your computer. If this screen appears again, follow these steps:</p>
+    <p>...</p>
+  </div>
+  <!-- Loading Bar Overlay (Center-Right) -->
+  <div id="loadingBar">
+    <div id="virusCounter">Downloading Viruses: 1/124</div>
+    <img src="ZKZg.gif" alt="Loading...">
+  </div>
+  <!-- Danger Alarm Audio (Hidden) -->
+  <audio id="dangerAlarm" src="Danger Alarm Sound Effect.mp3" loop style="display:none;"></audio>
+  <script>
+    let chaosStarted = false;
+    let currentAlerts = 0;
+    let cursorInterval;
+    let virusCount = 1;
+    let virusInterval;
+    
+    // Two alert images
+    const alertImages = ["ErrorMessage.png", "Image1234.jpg"];
+    
+    function createFakeAlert(isInitial = false) {
+      const alertDiv = document.createElement('div');
+      alertDiv.className = 'fake-alert';
+      if (isInitial) {
+        alertDiv.style.width = "500px";
+        alertDiv.style.left = (window.innerWidth - 500) / 2 + "px";
+        alertDiv.style.top = (window.innerHeight - 250) / 2 + "px";
+      } else {
+        alertDiv.style.left = Math.floor(Math.random() * (window.innerWidth - 320)) + "px";
+        alertDiv.style.top = Math.floor(Math.random() * (window.innerHeight - 120)) + "px";
+      }
+      const img = document.createElement('img');
+      const randomImage = alertImages[Math.floor(Math.random() * alertImages.length)];
+      img.src = randomImage;
+      img.className = 'image-alert';
+      alertDiv.appendChild(img);
+      const closeBtn = document.createElement('button');
+      closeBtn.textContent = 'X';
+      closeBtn.addEventListener('click', function() {
+        alertDiv.remove();
+        currentAlerts--;
+        if (isInitial && !chaosStarted) {
+          chaosStarted = true;
+          setTimeout(triggerFlood, 3000); // 3 seconds flood duration
+        }
+      });
+      alertDiv.appendChild(closeBtn);
+      document.body.appendChild(alertDiv);
+      currentAlerts++;
+    }
+    
+    function triggerFlood() {
+      const floodDuration = 3000;
+      const floodInterval = 100;
+      const floods = Math.floor(floodDuration / floodInterval);
+      let count = 0;
+      const floodTimer = setInterval(function() {
+        createFakeAlert();
+        count++;
+        if (count >= floods) {
+          clearInterval(floodTimer);
+          triggerHackingMode();
+        }
+      }, floodInterval);
+    }
+    
+    function generateRandomCodeLine() {
+      const baseSnippets = [
+        "var x = 42;",
+        "function foo() { return 'bar'; }",
+        "console.log('Hello World');",
+        "if(a > b){ a--; }",
+        "while(true){ break; }",
+        "let result = computeValue();",
+        "document.body.style.background = '#000';",
+        "for(let i=0; i<10; i++){ console.log(i); }",
+        "const obj = { key: 'value' };",
+        "import {module} from 'lib';"
+      ];
+      const newIdeas = [
+        "AI.generateCode('Hello, World!');",
+        "while(system.check()) { hack(); }",
+        "alert('System failure: ' + Math.random());",
+        "const result = await fetch('https://api.example.com/data');",
+        "debugger;",
+        "throw new Error('Random error occurred');",
+        "console.warn('Warning: AI detected anomaly');"
+      ];
+      const extraNewIdeas = [
+        "document.write('<h1>YOU ARE HACKED!</h1>');",
+        "setTimeout(() => { alert('Boom!'); }, 0);",
+        "console.log('%cSYSTEM OVERRIDE', 'color: red; font-size: 20px;');",
+        "fetch('https://evilapi.example.com/stealData');",
+        "var virus = new Virus(); virus.infect();",
+        "while(true){ console.error('Infinite loop detected'); }",
+        "debugger; // Pause execution",
+        "console.table([{id: 1, name: 'Error'}, {id: 2, name: 'Crash'}]);",
+        "throw 'Fatal Error: System Crash';",
+        "document.body.innerHTML += '<div style=\"position:fixed;top:0;left:0;width:100%;height:100%;background:red;opacity:0.5;z-index:10000;\">SYSTEM FAILURE</div>';"
+      ];
+      const combined = baseSnippets.concat(newIdeas).concat(extraNewIdeas);
+      return combined[Math.floor(Math.random() * combined.length)];
+    }
+    
+    function triggerHackingMode() {
+      clearInterval(cursorInterval);
+      document.body.style.cursor = 'none';
+      
+      document.getElementById('loadingBar').style.display = 'block';
+      virusCount = 1;
+      document.getElementById('virusCounter').textContent = "Downloading Viruses: 1/124";
+      virusInterval = setInterval(function() {
+        if (virusCount < 124) {
+          virusCount++;
+          document.getElementById('virusCounter').textContent = "Downloading Viruses: " + virusCount + "/124";
+        } else {
+          clearInterval(virusInterval);
+        }
+      }, 500);
+      
+      document.body.classList.add('glitch');
+      document.body.style.background = '#000';
+      document.body.style.color = '#0f0';
+      
+      const hackingOverlay = document.getElementById('hackingOverlay');
+      hackingOverlay.style.display = 'block';
+      hackingOverlay.textContent = "";
+      hackingOverlay.classList.add('hacking-effects');
+      
+      setInterval(function() {
+        hackingOverlay.textContent += generateRandomCodeLine() + "\n";
+        hackingOverlay.scrollTop = hackingOverlay.scrollHeight;
+      }, 67);
+      
+      for (let i = 0; i < 15; i++) {
+        playSirenAndVoice();
+      }
+      const dangerAlarm = document.getElementById('dangerAlarm');
+      if (dangerAlarm) {
+        dangerAlarm.play();
+      }
+    }
+    
+    function playSirenAndVoice() {
+      if (!window.AudioContext) return;
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      gainNode.gain.setValueAtTime(3.0, audioCtx.currentTime);
+      oscillator.frequency.setValueAtTime(400 + Math.random() * 100, audioCtx.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(1000, audioCtx.currentTime + 0.5);
+      oscillator.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 1);
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 30);
+    }
+    
+    function cycleCursor() {
+      document.body.style.cursor = 'none';
+      setTimeout(function() {
+        document.body.style.cursor = 'default';
+      }, 500);
+    }
+    cursorInterval = setInterval(cycleCursor, 5500);
+    
+    const chaosButtons = document.getElementsByClassName('chaos-btn');
+    for (const btn of chaosButtons) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (!chaosStarted) {
+          chaosStarted = true;
+          setTimeout(triggerFlood, 3000);
+        }
+      });
+    }
+    
+    function triggerFlood() {
+      const floodDuration = 3000;
+      const floodInterval = 100;
+      const floods = Math.floor(floodDuration / floodInterval);
+      let count = 0;
+      const floodTimer = setInterval(function() {
+        createFakeAlert();
+        count++;
+        if (count >= floods) {
+          clearInterval(floodTimer);
+          triggerHackingMode();
+        }
+      }, floodInterval);
+    }
+    
+    // Wheel functions
+    function showWheel() {
+      const wheelContainer = document.getElementById('wheelContainer');
+      wheelContainer.style.display = 'block';
+      // Start spinning the wheel
+      spinWheel();
+    }
+    
+    function spinWheel() {
+      const wheel = document.getElementById('wheel');
+      // For a rigged spin, choose a large rotation ending at 300deg (option 6: "Malware Download")
+      // We'll spin a total of, say, 1440 + 300 = 1740 degrees.
+      wheel.style.transform = "rotate(1740deg)";
+      // After the spin animation (set to 4 seconds), call onWheelLanded
+      setTimeout(onWheelLanded, 4000);
+    }
+    
+    function onWheelLanded() {
+      const wheelMessage = document.getElementById('wheelMessage');
+      wheelMessage.textContent = "Result: Malware Download";
+      // Hide the wheel container after 2 seconds, then trigger pop-ups after 3 seconds.
+      setTimeout(function() {
+        document.getElementById('wheelContainer').style.display = 'none';
+        setTimeout(triggerFlood, 3000);
+      }, 2000);
+    }
+    
+    // Remove initial alert trigger
+    window.onload = function() {
+      // Instead of showing an alert, show the wheel after 6 seconds
+      setTimeout(showWheel, 6000);
+    };
+  </script>
 </body>
 </html>
